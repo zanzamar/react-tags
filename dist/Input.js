@@ -2,6 +2,8 @@
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
+function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
 var React = require('react');
 
 var sizerStyles = {
@@ -57,13 +59,17 @@ module.exports = React.createClass({
         var placeholder = _props.placeholder;
 
         var style = this.props.autoresize ? { width: this.state.inputWidth } : null;
+        var _props2 = this.props;
+        var autoresize = _props2.autoresize;
+
+        var inputProps = _objectWithoutProperties(_props2, ['autoresize']);
 
         return React.createElement(
             'div',
             null,
             React.createElement('input', _extends({ ref: function (c) {
                     return _this.input = c;
-                } }, this.props, { style: style })),
+                } }, inputProps, { style: style })),
             React.createElement(
                 'div',
                 { ref: function (c) {
